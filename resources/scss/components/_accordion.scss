@@ -1,0 +1,18 @@
+#accordion-collapse {
+
+    button {
+        @apply flex items-center justify-between w-full p-5 font-medium border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3;
+
+        span {
+            @apply text-left;
+        }
+    }
+
+    .accordion-inside {
+        @apply p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900;
+
+        p {
+            @apply text-gray-800 dark:text-gray-400;
+        }
+    }
+}
