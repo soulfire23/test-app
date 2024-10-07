@@ -7,121 +7,111 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="/">
-                        <img src="{{ asset('assets/images/logo.webp') }}" alt="" class="max-w-48">
+                        <img src="{{ asset('assets/images/logo.webp') }}" alt="" class="max-w-32 lg:max-w-48">
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-{{--                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex items-center">--}}
-{{--                    <div>--}}
-{{--                        <a href="#">--}}
-{{--                            <img src="{{ asset('assets/images/icons/heart.svg') }}" alt="" class="w-auto">--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
+                <div x-data="{ open: false, title: 'Language'  }" @click.outside="open = false"
+                     class="relative inline-block text-left z-10">
+                    <div>
+                        <button @click="open = !open" type="button"
+                                class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                                id="menu-button" aria-expanded="true" aria-haspopup="true">
+                            <span x-text="title"></span>
+                            <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                 aria-hidden="true" data-slot="icon">
+                                <path fill-rule="evenodd"
+                                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        </button>
+                    </div>
 
-{{--                    <!-- Settings Dropdown -->--}}
-{{--                        <div class="hidden sm:flex sm:items-center sm:ms-6">--}}
-{{--                            <x-dropdown align="right" width="48">--}}
-{{--                                <x-slot name="trigger">--}}
-{{--                                    <button--}}
-{{--                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">--}}
-{{--                                        <div>{{ Auth::user()->name }}</div>--}}
-
-{{--                                        <div class="ms-1">--}}
-{{--                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                                 viewBox="0 0 20 20">--}}
-{{--                                                <path fill-rule="evenodd"--}}
-{{--                                                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"--}}
-{{--                                                      clip-rule="evenodd"/>--}}
-{{--                                            </svg>--}}
-{{--                                        </div>--}}
-{{--                                    </button>--}}
-{{--                                </x-slot>--}}
-
-{{--                                <x-slot name="content">--}}
-{{--                                    <x-dropdown-link :href="route('dashboard')">--}}
-{{--                                        @if (auth()->user()->role === 'user')--}}
-{{--                                            Заказы--}}
-{{--                                        @else--}}
-{{--                                            Личный кабинет--}}
-{{--                                        @endif--}}
-{{--                                    </x-dropdown-link>--}}
-
-{{--                                    <x-dropdown-link :href="route('profile.edit')">--}}
-{{--                                        Профиль--}}
-{{--                                    </x-dropdown-link>--}}
-
-{{--                                    <!-- Authentication -->--}}
-{{--                                    <form method="POST" action="{{ route('logout') }}">--}}
-{{--                                        @csrf--}}
-
-{{--                                        <x-dropdown-link :href="route('logout')"--}}
-{{--                                                         onclick="event.preventDefault();--}}
-{{--                                                this.closest('form').submit();">--}}
-{{--                                            {{ __('Log Out') }}--}}
-{{--                                        </x-dropdown-link>--}}
-{{--                                    </form>--}}
-{{--                                </x-slot>--}}
-{{--                            </x-dropdown>--}}
-{{--                        </div>--}}
-{{--                </div>--}}
-
+                    <div x-show="open"
+                         class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                         role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                        <div class="py-1 overflow-y-scroll h-28" role="none">
+                            <a @click="title = 'Русский', open = false" href="#"
+                               class="flex items-center px-4 py-2 text-sm text-gray-700">
+                                <span class="mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8" viewBox="0 0 640 480">
+                                      <defs>
+                                        <clipPath id="bs-a">
+                                          <path fill-opacity=".7" d="M-12 0h640v480H-12z"/>
+                                        </clipPath>
+                                      </defs>
+                                      <g fill-rule="evenodd" clip-path="url(#bs-a)" transform="translate(12)">
+                                        <path fill="#fff" d="M968.5 480h-979V1.8h979z"/>
+                                        <path fill="#ffe900" d="M968.5 344.5h-979V143.3h979z"/>
+                                        <path fill="#08ced6" d="M968.5 480h-979V320.6h979zm0-318.7h-979V2h979z"/>
+                                        <path fill="#000001" d="M-11 0c2.3 0 391.8 236.8 391.8 236.8L-12 479.2z"/>
+                                      </g>
+                                    </svg>
+                                </span>
+                                Русский
+                            </a>
+                            <a @click="title = 'English', open = false" href="#"
+                               class="flex items-center block px-4 py-2 text-sm text-gray-700">
+                                <span class="mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8" viewBox="0 0 640 480">
+                                        <path fill="#fff" d="M0 0h640v480H0z"/>
+                                        <path fill="#000091" d="M0 0h213.3v480H0z"/>
+                                        <path fill="#e1000f" d="M426.7 0H640v480H426.7z"/>
+                                    </svg>
+                                </span>
+                                English
+                            </a>
+                            <a @click="title = 'Italiano', open = false" href="#"
+                               class="flex items-center block px-4 py-2 text-sm text-gray-700">
+                                <span class="mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8" viewBox="0 0 640 480">
+                                      <g fill-rule="evenodd" stroke-width="1pt">
+                                        <path fill="#0000b4" d="M0 0h640v480H0z"/>
+                                        <path fill="#fff" d="M0 75.4h640v322.3H0z"/>
+                                        <path fill="#d90000" d="M0 157.7h640v157.7H0z"/>
+                                      </g>
+                                    </svg>
+                                </span>
+                                Italiano
+                            </a>
+                            <a @click="title = 'Spanish', open = false" href="#"
+                               class="flex items-center block px-4 py-2 text-sm text-gray-700">
+                                <span class="mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8" viewBox="0 0 640 480">
+                                      <g fill-rule="evenodd" stroke-width="1pt">
+                                        <path fill="#000001" d="M0 0h213.3v480H0z"/>
+                                        <path fill="#ffd90c" d="M213.3 0h213.4v480H213.3z"/>
+                                        <path fill="#f31830" d="M426.7 0H640v480H426.7z"/>
+                                      </g>
+                                    </svg>
+                                </span>
+                                Spanish
+                            </a>
+                            <a @click="title = 'Chinese', open = false" href="#"
+                               class="flex items-center block px-4 py-2 text-sm text-gray-700">
+                                <span class="mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8" viewBox="0 0 640 480">
+                                      <defs>
+                                        <clipPath id="bv-a">
+                                          <path fill-opacity=".7" d="M0 0h640v480H0z"/>
+                                        </clipPath>
+                                      </defs>
+                                      <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#bv-a)">
+                                        <path fill="#fff" d="M-28 0h699.7v512H-28z"/>
+                                        <path fill="#d72828"
+                                              d="M-53-77.8h218.7v276.2H-53zM289.4-.6h381v199h-381zM-27.6 320h190.4v190.3H-27.6zm319.6 2.1h378.3v188.2H292z"/>
+                                        <path fill="#003897" d="M196.7-25.4H261v535.7h-64.5z"/>
+                                        <path fill="#003897" d="M-27.6 224.8h698v63.5h-698z"/>
+                                      </g>
+                                    </svg>
+                                </span>
+                                Chinese
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Hamburger -->
-            <div class="flex items-center sm:hidden">
-                <button id="toggle-menu-button"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 focus:outline-none transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path class="inline-flex"
-                              stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M4 6h16M4 12h16M4 18h16"/>
-                        <path class="hidden" stroke-linecap="round"
-                              stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
         </div>
     </div>
-
-    <!-- Responsive Navigation Menu -->
-{{--    <div id="responsive-menu" class="hidden sm:hidden">--}}
-{{--        <div class="pt-2 pb-3 space-y-1">--}}
-{{--            <x-responsive-nav-link href="{{ route('public.page.help') }}" active="">Помощь</x-responsive-nav-link>--}}
-{{--            <x-responsive-nav-link href="" active="">Избранное</x-responsive-nav-link>--}}
-{{--            @guest--}}
-{{--                <x-responsive-nav-link :href="route('login')" active="">Войти</x-responsive-nav-link>--}}
-{{--            @endguest--}}
-{{--            <div class="submenu px-4">--}}
-{{--                @include('includes._header-support')--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <!-- Responsive Settings Options -->--}}
-{{--        @if (auth()->check())--}}
-{{--            <div class="pt-4 pb-1 border-t border-gray-200">--}}
-{{--                <div class="px-4">--}}
-{{--                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>--}}
-{{--                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>--}}
-{{--                </div>--}}
-
-{{--                <div class="mt-3 space-y-1">--}}
-{{--                    <x-responsive-nav-link :href="route('profile.edit')">--}}
-{{--                        {{ __('Profile') }}--}}
-{{--                    </x-responsive-nav-link>--}}
-
-{{--                    <!-- Authentication -->--}}
-{{--                    <form method="POST" action="{{ route('logout') }}">--}}
-{{--                        @csrf--}}
-
-{{--                        <x-responsive-nav-link :href="route('logout')"--}}
-{{--                                               onclick="event.preventDefault();--}}
-{{--                                        this.closest('form').submit();">--}}
-{{--                            {{ __('Log Out') }}--}}
-{{--                        </x-responsive-nav-link>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endif--}}
-{{--    </div>--}}
 </nav>
